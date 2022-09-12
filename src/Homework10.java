@@ -15,6 +15,8 @@ public class Homework10 {
     public static Collection<String> duplicateWords(String string) {
         Set<String> words = new HashSet<>();
         Set<String> stringsToPrint = new HashSet<>();
+        string = string.replaceAll("\\.", "");
+        string = string.replaceAll(",", "");
         for (String s : string.split("\\s+")) {
             if (!words.contains(s))
                 words.add(s);
@@ -26,6 +28,8 @@ public class Homework10 {
 
     public static void wordsContains(String string) {
         HashMap<String, Integer> wordToCount = new HashMap<>();
+        string = string.replaceAll("\\.", "");
+        string = string.replaceAll(",", "");
         String[] words = string.toLowerCase().split("\\s+");
         for (String word : words) {
             if (!wordToCount.containsKey(word)) {
