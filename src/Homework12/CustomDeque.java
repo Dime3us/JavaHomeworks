@@ -1,8 +1,6 @@
-package Homework11;
+package Homework12;
 
-import java.util.Deque;
 import java.util.Iterator;
-import java.util.Set;
 
 // Deque - Double Ended Queue - двухсторонняя очередь
 // обеспечивает добавление и получение элементов в обоих концов контейнера

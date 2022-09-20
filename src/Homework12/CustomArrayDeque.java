@@ -1,8 +1,8 @@
-package Homework11;
+package Homework12;
 
+                                        //IteratorBackwards   String 104
+import Homework11.CustomDeque;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Iterator;
 
 public class CustomArrayDeque implements CustomDeque {
@@ -115,7 +115,7 @@ public class CustomArrayDeque implements CustomDeque {
                 return source[((size + firstElementIndex) % source.length) - position];
             }
         };
-    }
+    }               //Iterator
 
     @Override
     public String toString() {
