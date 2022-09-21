@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Sets {
     public static void main(String[] args) {
-        Integer[] list = {1, 2, 5, 6, 8, 2, 4, 6};
+        Integer[] list = {1, 2, 5, 6, 8, 2, 4};
 
         Set<String> set1 = new HashSet<>();
         Set<String> set2 = new HashSet<>();
@@ -36,35 +36,34 @@ public class Sets {
         List<Integer> array = new ArrayList<>();
         List<Integer> arrayTemp = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
-            if (arrayTemp.size() == 0 && list.get(i) % 2 == 0) {
-                arrayTemp.add(list.get(i));
-//            }
-//            if (i + 1 <= list.size()) {
-                if (list.get(i + 1) - list.get(i) == 2) {
-                    arrayTemp.add(list.get(i + 1));
-//                }
-//
-//            } else if
-//            (arrayTemp.size() > array.size() && arrayTemp.size() > 1) {
-//                array.clear();
-//                for (int j = 0; j < arrayTemp.size(); j++) {
-//                    array.add(j, arrayTemp.get(j));
-//                }
-//                if (array.size() == 1) {
-//                    array.clear();
-//                }
-//                arrayTemp.clear();
-//
-//            } else {
-//
-//                arrayTemp.clear();
-//            }
-//        }
+        for (int i = 1; i < list.size(); i++) {
+//        for (int i : list
+//        ) {
 
 
-                }
+            if (arrayTemp.size() == 0 && list.get(i-1) % 2 == 0) {
+                arrayTemp.add(list.get(i-1));
             }
+//            if (i+1  < list.size()) {
+                if (list.get(i+1) - list.get(i) == 2) {
+                    arrayTemp.add(list.get(i+1));
+
+            } else if
+            (arrayTemp.size() > array.size() && arrayTemp.size() > 1) {
+                array.clear();
+                for (int j = 0; j < arrayTemp.size(); j++) {
+                    array.add(j, arrayTemp.get(j));
+                }
+                if (array.size() == 1) {
+                    array.clear();
+                }
+                arrayTemp.clear();
+
+            } else {
+
+                arrayTemp.clear();
+            }
+
         }
         return array;
     }
