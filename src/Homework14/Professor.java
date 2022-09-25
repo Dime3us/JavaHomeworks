@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Professor implements Comparable<Professor> {
-    String name;
-    int salary;
-    List<Student> StudentsList;
+    private String name;
+    private int salary;
+    private List<Student> StudentsList;
 
     public Professor(String name, int salary, List<Student> studentsList) {
         this.name = name;
@@ -44,11 +44,11 @@ public class Professor implements Comparable<Professor> {
     }
 
     @Override
-    public String toString() {                                    //toString не печатает студентов
-        return
-                name + '\'' +
-                        salary +
-                        Arrays.toString(StudentsList.toArray()) +
-                        '}';
+    public String toString() {
+        return "Professor{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", StudentsList=" + StudentsList +
+                '}';
     }
 }

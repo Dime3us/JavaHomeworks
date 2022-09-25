@@ -5,6 +5,15 @@ public class Student {
     int age;
     String speciality;
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", speciality='" + speciality + '\'' +
+                '}';
+    }
+
     public Student(String name, int age, String speciality) {
         this.name = name;
         this.age = age;
