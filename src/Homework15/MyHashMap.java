@@ -20,6 +20,11 @@ public class MyHashMap implements MyMap {
             this.value = value;
             this.next = next;
         }
+
+        @Override
+        public String toString() {
+            return "{" + key + ":" + value + "}";
+        }
     }
 
     @Override
@@ -66,20 +71,51 @@ public class MyHashMap implements MyMap {
         Pair[] newSource = new Pair[source.length * 2];   //создаем массив в два раза больше
         for (Pair pair : source)                                 // пробегаем по старому массиву
         {
-
-            while (pair != null) {
-                int bucket = Math.abs(pair.key.hashCode()) % newSource.length;
-                
-                if (newSource[bucket] != null)
-                    pair.next = newSource[bucket];
-
-                newSource[bucket] = pair;
-                pair = pair.next;
+            Pair pair1 = pair;
+            while (pair1 != null) {
+                Pair pair2 = pair1.next;
+                int bucket = Math.abs(pair1.key.hashCode()) % newSource.length;
+                pair.next = newSource[bucket];
+                newSource[bucket] = pair1;
+                pair1 = pair2;
             }
-
         }
         source = newSource;
     }
+
+    @Override
+    public String toString() {
+        int s = size - 1;
+        StringBuilder b = new StringBuilder();
+
+        for (Pair p : source
+        ) {
+            Pair c = p;
+            while ((c != null)) {
+                s--;
+                b.append(c);
+                if (s >= 0) {
+                    b.append((", "));
+                }
+                c = c.next;
+            }
+        }
+        b.append("]");
+        return b.toString();
+    }
+
+    //                int bucket = Math.abs(pair.key.hashCode()) % newSource.length;
+//
+//                if (newSource[bucket] != null)
+//                    pair.next = newSource[bucket];
+//
+//                newSource[bucket] = pair;
+//                pair = pair.next;
+//            }
+//
+//        }
+//        source = newSource;
+
 //                Pair currentPair = source[i];                   //создаем пару из старого массива
 //                while (currentPair != null) {                   //и проверяем ее на null
 //                    // находим бакет в новом массиве
@@ -135,8 +171,6 @@ public class MyHashMap implements MyMap {
             size--;
             return currentPair.value;
         }
-
-
         while (currentPair.next != null) {
             if (currentPair.next.key.equals(key)) {
                 Pair pairTemp = currentPair.next;
@@ -152,13 +186,40 @@ public class MyHashMap implements MyMap {
     }
 
 
+
+//    public String removeTeacher(String key) {
+//        int bucket = findBucket(key);
+//        Pair c = source[bucket];
+//        if(c == null)
+//            return null;
+//        if(c.key.equals(key))
+//        {
+//            source[bucket]  = c.next;
+//            size--;
+//            return c.value;
+//        }
+//        while (c.next != null)
+//        {
+//            if(c.next.key.equals(key))
+//            {
+//                Pair toDelete = c.next;
+//                c.next = toDelete.next;
+//                size--;
+//                return toDelete.value;
+//            }
+//            c = c.next;
+//        }
+//        return null;
+//    }
+
+
+
     @Override
     public boolean contains(String key) {
-        if (size >= 0) {
-            Pair pair = findPair(key);
-            return pair != null;
-        }
-        return false;
+
+        Pair pair = findPair(key);
+        return pair != null;
+
     }
 
     @Override

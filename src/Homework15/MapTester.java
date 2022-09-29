@@ -22,6 +22,7 @@ public class MapTester {
         System.out.println(map.remove("Moldova"));
         System.out.println(map.size());
         System.out.println(map.contains("Moldova"));
+        System.out.println(map);
 
     }
 }
