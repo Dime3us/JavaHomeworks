@@ -4,34 +4,31 @@ import java.util.*;
 
 public class ListToTreeMap {
     public static void main(String[] args) {
-        ArrayList<String> list = new ArrayList<>(Arrays.asList("Hello", "Hell", "World","Abba"));
+        ArrayList<String> list = new ArrayList<>(Arrays.asList("Hello", "Hell", "World", "Abba"));
 
 //        System.out.println(listToTreeMap(list));
         listToTreeMap(list);
     }
 
-    public static /*TreeMap<String, TreeSet<String>>*/void listToTreeMap(ArrayList<String> list) {
+    public static TreeMap<String, TreeSet<String>> listToTreeMap(ArrayList<String> list) {
         TreeSet<String> set = new TreeSet<>();
         TreeMap<String, TreeSet<String>> map = new TreeMap<>();
         list.sort(String::compareToIgnoreCase);
         for (String s : list) {
-           char c = s.charAt(0);
-            for (String s1 : list){
-                if(s1.charAt(0) == c){
-                    
-                    TreeSet<String> s2 = new TreeSet<>();
-                }
+            String c = s.substring(0, 0);
+            if (map.containsKey(c)) {
+                set = map.get(c);
+                set.add(s);
+                map.put(c, set);
+                set.clear();
+            } else {
+                set.add(s);
+                map.put(c, set);
             }
 
 
-//            if(!map.containsKey((s.substring(0, 0)))){
-//                new TreeSet<>();
-//                map.put(s.substring(0,0),this.TreeSet);
-//            }
-
-
         }
-
+        return map;
     }
 
 
