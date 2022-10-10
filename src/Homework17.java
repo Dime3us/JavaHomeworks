@@ -15,7 +15,8 @@ public class Homework17 {
         if (string.length() == 0)
             return "Please enter your text";
         char[] array = string.toCharArray();
-        String result = "";
+        StringBuilder b = new StringBuilder();
+
 
         int counter = 1;
         int i;
@@ -26,13 +27,11 @@ public class Homework17 {
 
                 continue;
             }
-            result = result + counter + array[i - 1];
+            b.append(counter).append(array[i - 1]);
             counter = 1;
-
-
         }
-        result = result + counter + array[i - 1];
-        return result;
+        b.append(counter).append(array[i - 1]);
+        return b.toString();
     }
 
     public static String stringDecoder(String string) {
