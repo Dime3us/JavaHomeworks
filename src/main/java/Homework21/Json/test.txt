@@ -1,0 +1,1 @@
+{"name":"Ivanov","age":25,"address":"Sinizina 32, Moskau","gender":"man"}
