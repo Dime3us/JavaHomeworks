@@ -7,53 +7,55 @@ import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
+
 
 public class Collector {
     public static void main(String[] args) {
-        List <Integer> list = List.of(2,4,6,8,10,12,14);
-        System.out.println(averageNumber(list));
-        System.out.println();
+        List<Integer> list = List.of(2, 4, 6, 8, 10, 12, 14);
+        System.out.println("Average value of List elements = " + averageNumber(list));
+
     }
-public static Double averageNumber (List<Integer> list) {
-        double number = 0.0;
-        list.stream().collect(new java.util.stream.Collector<Integer, Double, Double>() {
+
+    public static Double averageNumber(List<Integer> list) {
+
+       return list.stream().collect(new java.util.stream.Collector<Integer, List<Integer>, Double>() {
             @Override
-            public Supplier<Double> supplier() {
-                return new Supplier<Double>() {
+            public Supplier<List<Integer>> supplier() {
+                return ArrayList::new;
+            }
 
-                    @Override
-                    public Double get() {
+            @Override
+            public BiConsumer<List<Integer>, Integer> accumulator() {
+                return List::add;
+            }
 
-                        return null;
-                    }
+            @Override
+            public BinaryOperator<List<Integer>> combiner() {
+
+                return (integers, integers2) -> {
+                    integers.addAll(integers2);
+
+                    return integers;
                 };
             }
 
             @Override
-            public BiConsumer<Double, Integer> accumulator() {
-                return null;
-            }
+            public Function<List<Integer>, Double> finisher() {
+                return integers -> {
+                    int sum = integers.stream().reduce(0, Integer::sum);
 
-            @Override
-            public BinaryOperator<Double> combiner() {
-                return null;
-            }
-
-            @Override
-            public Function<Double, Double> finisher() {
-                return null;
+                    System.out.println("Sum of all elements = " + sum);
+                    return (double)(sum / integers.size());
+                };
             }
 
             @Override
             public Set<Characteristics> characteristics() {
-                return null;
+                return Set.of(Characteristics.UNORDERED);
             }
         });
 
 
-    return number;
-    }
-
 //    Напишите коллектор который из потока целых вычисляет Double среднее значение
+    }
 }
