@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class DirectoryRider {
     public static void main(String[] args) {
-        String path = "C://Users//Dime3//IdeaProjects//JavaHomeworks//target";
+        String path = "C://Users//Dime3//IdeaProjects//JavaHomeworks";
         dirsRider(path, "s");
 
         File file = new File("C://Users//");
