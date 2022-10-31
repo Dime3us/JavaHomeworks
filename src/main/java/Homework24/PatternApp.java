@@ -7,7 +7,7 @@ public class PatternApp {
         System.out.println(removalOfVowels("Homework домашнее задание"));
         System.out.println(isTelephoneNumber("+123456"));
         String string = "10 расходы 20 доходы 50.";
-        System.out.println(toBoolean(string));
+        System.out.println(toDouble(string));
 
     }
 
@@ -21,7 +21,7 @@ public class PatternApp {
 
     //Если в строке встречается число без десятичной точки ,
     // то добавьте этой цифре ".0" . Пример: "расходы 20 доходы 50.3" -> "расходы 20.0 доходы 50.3"
-    public static String toBoolean(String s) {
+    public static String toDouble(String s) {
         List<String> original = List.of(s.split(" "));
 
         StringBuilder builder = new StringBuilder();
