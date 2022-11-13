@@ -1,7 +1,9 @@
 package Homework31;
+
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.IntStream;
 
 public class PiThread {
     private static int yes = 0;
@@ -13,21 +15,23 @@ public class PiThread {
         PiRunnable p1 = new PiRunnable();
         p1.execute(2);
         long b = System.currentTimeMillis();
-        System.out.println("Work time with 2 Threads = " + (b-a) + " ms");
-        yes = 0;no = 0;
+        System.out.println("Work time with 2 Threads = " + (b - a) + " ms");
+        yes = 0;
+        no = 0;
 
         long c = System.currentTimeMillis();
         PiRunnable p2 = new PiRunnable();
         p2.execute(3);
         long d = System.currentTimeMillis();
-        System.out.println("Work time with 3 Threads = " + (d-c) + " ms");
-        yes = 0;no = 0;
+        System.out.println("Work time with 3 Threads = " + (d - c) + " ms");
+        yes = 0;
+        no = 0;
 
         long e = System.currentTimeMillis();
         PiRunnable p3 = new PiRunnable();
         p3.execute(4);
         long f = System.currentTimeMillis();
-        System.out.println("Work time with 4 Threads = " + (f-e) + " ms");
+        System.out.println("Work time with 4 Threads = " + (f - e) + " ms");
 
     }
 
@@ -35,19 +39,18 @@ public class PiThread {
         public void execute(int n) throws InterruptedException {
             ExecutorService service = Executors.newFixedThreadPool(n);
             Runnable r = new PiRunnable();
-            int i = 0;
-            while (i < 1_000_000) {
-                service.submit(r);
-                i++;
-            }
+            IntStream.range(0, 1_000_000).forEach(i -> service.submit(r));
+
             service.shutdown();
-            Thread.sleep(200);
+            Thread.sleep(300);
+
             System.out.println("pi = " + 4.0 * yes / (yes + no));
             System.out.println("yes counter = " + yes);
             System.out.println("no counter = " + no);
             System.out.println("count sum = " + (yes + no));
 
         }
+
         @Override
         public void run() {
             Random random = new Random();
@@ -56,10 +59,11 @@ public class PiThread {
             double R = Math.sqrt(x * x + y * y);
             countSum(R);
         }
-        private void countSum(double R) {
+
+        private synchronized void countSum(double R) {
             if (R < 1.0)
                 yes++;
-            if (R > 1.0)
+            else
                 no++;
         }
     }
